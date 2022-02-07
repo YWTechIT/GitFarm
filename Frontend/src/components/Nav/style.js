@@ -8,7 +8,7 @@ export const NavWrapper = styled.nav`
   bottom: 0;
   left: 0;
   right: 0;
-  z-index: 100;
+  z-index: 90;
 `;
 
 export const Home = styled(HomeIcon)`
