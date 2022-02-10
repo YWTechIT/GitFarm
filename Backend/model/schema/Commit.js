@@ -34,7 +34,7 @@ const CommitSchema = new Schema(
       ],
     },
     continous: {
-      type: String,
+      type: Number,
     },
   },
   {
