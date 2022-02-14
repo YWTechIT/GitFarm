@@ -29,6 +29,40 @@ describe("/api/users", () => {
     });
   });
 
+  describe("/api/users/resolution", () => {
+    test("POST resolution", async () => {
+      const response = await request(app)
+        .post("/api/users/resolution")
+        .set("Cookie", token)
+        .send({ resolution: "테스트 코드 작성 재밌다." });
+
+      const expectedStatus = 201;
+      const expectedBody = {
+        success: true,
+        resolution: "테스트 코드 작성 재밌다.",
+      };
+
+      expect(response.statusCode).toEqual(expectedStatus);
+      expect(response._body).toStrictEqual(expectedBody);
+    });
+
+    test("GET resolution", async () => {
+      const response = await request(app)
+        .get("/api/users/resolution")
+        .set("Cookie", token)
+        .send();
+
+      const expectedStatus = 200;
+      const expectedBody = {
+        success: true,
+        resolution: "테스트 코드 작성 재밌다.",
+      };
+
+      expect(response.statusCode).toEqual(expectedStatus);
+      expect(response._body).toStrictEqual(expectedBody);
+    });
+  });
+
   describe("/api/users/goal", () => {
     test("POST Goal", async () => {
       const response = await request(app)
