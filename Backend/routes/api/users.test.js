@@ -3,7 +3,7 @@ import request from "supertest";
 import { GOAL } from "../../model/default/index.js";
 import app from "../../server.js";
 
-jest.setTimeout(10000);
+jest.setTimeout(20000);
 
 describe("/api/users", () => {
   const token =
