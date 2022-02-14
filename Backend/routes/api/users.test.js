@@ -7,6 +7,37 @@ describe("/api/users", () => {
   const token =
     "token=eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6IjU0NTQzMDEzIiwiZW1haWwiOiJ5d3RlY2hpdEBnbWFpbC5jb20iLCJ1c2VybmFtZSI6IllXVGVjaElUIiwiaWF0IjoxNjQ0ODQ5NTA0LCJleHAiOjE2NDU0NTQzMDR9.KiW72eE8_ZNos42UYOa73_KohnoaiiHEYLeMFxO9eYw";
 
+  describe("/api/users/rank", () => {
+    test("GET rank", async () => {
+      const response = await request(app)
+        .get("/api/users/rank")
+        .set("Cookie", token)
+        .send();
+
+      const expectedStatus = 200;
+      const expectedMyRank = {
+        username: expect.any(String),
+        avatarUrl: expect.any(String),
+        score: expect.any(Number),
+      };
+      const expectedUserRank = [
+        {
+          username: expect.any(String),
+          avatarUrl: expect.any(String),
+          score: expect.any(Number),
+        },
+      ];
+
+      expect(response.statusCode).toEqual(expectedStatus);
+      expect(response._body.data.myRank).toEqual(
+        expect.objectContaining(expectedMyRank),
+      );
+      expect(response._body.data.userRank).toEqual(
+        expect.arrayContaining(expectedUserRank),
+      );
+    });
+  });
+
   describe("/api/users/repos/language", () => {
     test("GET language", async () => {
       const response = await request(app)
