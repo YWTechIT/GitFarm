@@ -318,9 +318,15 @@ export const getGoalController = async (req, res) => {
 export const postGoalController = async (req, res) => {
   try {
     await setGoal(req);
-    res.status(201);
+    res.status(201).json({
+      success: true,
+      goal: req.body.goal,
+    });
   } catch (err) {
-    res.status(500);
+    res.status(500).json({
+      success: false,
+      goal: "POST request Error",
+    });
   }
 };
 
