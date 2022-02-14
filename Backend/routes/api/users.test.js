@@ -7,6 +7,26 @@ describe("/api/users", () => {
   const token =
     "token=eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6IjU0NTQzMDEzIiwiZW1haWwiOiJ5d3RlY2hpdEBnbWFpbC5jb20iLCJ1c2VybmFtZSI6IllXVGVjaElUIiwiaWF0IjoxNjQ0ODQ5NTA0LCJleHAiOjE2NDU0NTQzMDR9.KiW72eE8_ZNos42UYOa73_KohnoaiiHEYLeMFxO9eYw";
 
+  describe("/api/users/levels", () => {
+    test("GET levels", async () => {
+      const response = await request(app)
+        .get("/api/users/levels")
+        .set("Cookie", token)
+        .send();
+
+      const expectedStatus = 200;
+      const expectedLevels = {
+        score: expect.any(Number),
+        commits: expect.any(Number),
+        issues: expect.any(Number),
+        pulls: expect.any(Number),
+      };
+
+      expect(response.statusCode).toEqual(expectedStatus);
+      expect(response._body.data).toEqual(expectedLevels);
+    });
+  });
+
   describe("/api/users/rank", () => {
     test("GET rank", async () => {
       const response = await request(app)
