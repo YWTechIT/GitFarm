@@ -39,7 +39,7 @@ export function fillZero(target, targetLenth, padString) {
   return str.padStart(targetLenth, padString);
 }
 
-const checkLeapYear = (year) =>
+export const checkLeapYear = (year) =>
   (year % 4 === 0 && year % 100 !== 0) || year % 400 === 0;
 
 const getFebruary = () => {
