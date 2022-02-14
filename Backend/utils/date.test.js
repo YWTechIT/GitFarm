@@ -1,6 +1,7 @@
 import {
   year,
   fillZero,
+  customDate,
   getFebruary,
   checkLeapYear,
   getMonthCalendar,
@@ -49,5 +50,15 @@ describe("month의 day를 배열로 출력하는 test", () => {
     const month = "09";
     const expected = Array.from({ length: 30 }, () => 0);
     expect(getMonthCalendar(month)).toStrictEqual(expected);
+  });
+});
+
+describe("year, month, day를 하나의 객체로 반환해주는 test", () => {
+  test(`year: 1996, month: 2, day: 16`, () => {
+    const year = 1996;
+    const month = 2;
+    const day = 16;
+    const expected = { year, month, day };
+    expect(customDate(year, month, day)).toStrictEqual(expected);
   });
 });
