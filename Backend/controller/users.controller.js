@@ -15,26 +15,13 @@ import {
   getDetailTotalCommitAllRepo,
   getContinuousCommitAllRepo,
 } from "../lib/api/index.js";
-
 import {
-  getGoal,
   getScore,
-  getBadge,
-  getMyRank,
-  getUserRank,
   getMemberDate,
-  getResolution,
-  getDefaultRank,
-  getBadgeFromDB,
-  setGoal,
-  setBadge,
-  setResolution,
   setMemberDate,
   FindValueByKey,
   FindByIdAndUpdate,
 } from "../services/index.js";
-
-import { GOAL } from "../model/default/index.js";
 import { getUserObjectId } from "../utils/db.js";
 import { ViewResponseJSON } from "./view.controller.js";
 
