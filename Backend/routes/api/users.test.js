@@ -7,6 +7,44 @@ describe("/api/users", () => {
   const token =
     "token=eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6IjU0NTQzMDEzIiwiZW1haWwiOiJ5d3RlY2hpdEBnbWFpbC5jb20iLCJ1c2VybmFtZSI6IllXVGVjaElUIiwiaWF0IjoxNjQ0ODQ5NTA0LCJleHAiOjE2NDU0NTQzMDR9.KiW72eE8_ZNos42UYOa73_KohnoaiiHEYLeMFxO9eYw";
 
+  describe("/api/users/repos/language", () => {
+    test("GET language", async () => {
+      const response = await request(app)
+        .get("/api/users/repos/language")
+        .set("Cookie", token)
+        .send();
+
+      const expectedStatus = 200;
+      const expectedBody = [
+        {
+          repo: expect.any(String),
+          language: expect.any(String),
+        },
+      ];
+
+      expect(response.statusCode).toEqual(expectedStatus);
+      expect(response._body.languages).toEqual(
+        expect.arrayContaining(expectedBody),
+      );
+    });
+
+    test("GET Goal", async () => {
+      const response = await request(app)
+        .get("/api/users/goal")
+        .set("Cookie", token)
+        .send();
+
+      const expectedStatus = 200;
+      const expectedBody = {
+        success: true,
+        goal: GOAL,
+      };
+
+      expect(response.statusCode).toEqual(expectedStatus);
+      expect(response._body).toStrictEqual(expectedBody);
+    });
+  });
+
   describe("/api/users/goal", () => {
     test("POST Goal", async () => {
       const response = await request(app)
