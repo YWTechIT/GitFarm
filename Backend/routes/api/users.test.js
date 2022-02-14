@@ -27,22 +27,6 @@ describe("/api/users", () => {
         expect.arrayContaining(expectedBody),
       );
     });
-
-    test("GET Goal", async () => {
-      const response = await request(app)
-        .get("/api/users/goal")
-        .set("Cookie", token)
-        .send();
-
-      const expectedStatus = 200;
-      const expectedBody = {
-        success: true,
-        goal: GOAL,
-      };
-
-      expect(response.statusCode).toEqual(expectedStatus);
-      expect(response._body).toStrictEqual(expectedBody);
-    });
   });
 
   describe("/api/users/goal", () => {
