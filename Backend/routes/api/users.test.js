@@ -40,4 +40,55 @@ describe("/api/users", () => {
       expect(response._body).toStrictEqual(expectedBody);
     });
   });
+
+  describe("/api/users/badge", () => {
+    test("POST badge", async () => {
+      const response = await request(app)
+        .post("/api/users/badge")
+        .set("Cookie", token)
+        .send({ badge: 1 });
+
+      const expectedStatus = 201;
+      const expectedBody = {
+        success: true,
+        badge: 1,
+      };
+      expect(response.statusCode).toEqual(expectedStatus);
+      expect(response._body).toStrictEqual(expectedBody);
+    });
+
+    test("GET badge", async () => {
+      const response = await request(app)
+        .get("/api/users/badge")
+        .set("Cookie", token)
+        .send();
+      const badge = [
+        false,
+        true,
+        false,
+        true,
+        false,
+        false,
+        false,
+        false,
+        false,
+        false,
+        false,
+        false,
+        false,
+        false,
+        false,
+        false,
+        false,
+        false,
+      ];
+      const expectedStatus = 200;
+      const expectedBody = {
+        success: true,
+        badge,
+      };
+      expect(response.statusCode).toEqual(expectedStatus);
+      expect(response._body).toStrictEqual(expectedBody);
+    });
+  });
 });
