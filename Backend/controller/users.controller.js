@@ -351,8 +351,14 @@ export const deleteUserController = async (req, res) => {
     await Badge.findByIdAndDelete(_id);
     await Commit.findByIdAndDelete(_id);
     await Level.findByIdAndDelete(_id);
-    res.status(201);
+    res.status(201).json({
+      success: true,
+      message: "success deleted",
+    });
   } catch (err) {
-    res.status(501);
+    res.status(401).json({
+      success: false,
+      message: "Bad Request",
+    });
   }
 };
