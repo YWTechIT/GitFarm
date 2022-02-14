@@ -38,7 +38,7 @@ describe("target을 targetLength 자리수로 맞춰고 앞 자리에 원하는 
   });
 });
 
-describe("원하는 month의 day를 배열로 출력하는 test", () => {
+describe("month의 day를 배열로 출력하는 test", () => {
   test(`1월 Array`, () => {
     const month = "01";
     const expected = Array.from({ length: 31 }, () => 0);
