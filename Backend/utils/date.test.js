@@ -10,12 +10,14 @@ import {
 describe("윤년인지 아닌지 확인하는 test", () => {
   test("윤년입니다.", () => {
     const isLeap = 1640;
-    expect(checkLeapYear(isLeap)).toBe(true);
+    const expected = true;
+    expect(checkLeapYear(isLeap)).toBe(expected);
   });
 
   test("윤년이 아닙니다.", () => {
     const isNotLeap = 2022;
-    expect(checkLeapYear(isNotLeap)).toBe(false);
+    const expected = false;
+    expect(checkLeapYear(isNotLeap)).toBe(expected);
   });
 });
 
@@ -23,10 +25,10 @@ describe("윤년여부에 따른 February 배열 test", () => {
   test(`${year}년 2월 배열`, () => {
     const isLeapYear = checkLeapYear(year);
     const february = getFebruary();
-    const answer = isLeapYear
+    const expected = isLeapYear
       ? Array.from({ length: 29 }, () => 0)
       : Array.from({ length: 28 }, () => 0);
-    expect(february).toStrictEqual(answer);
+    expect(february).toStrictEqual(expected);
   });
 });
 
@@ -35,7 +37,8 @@ describe("target을 targetLength 자리수로 맞춰고 앞 자리에 원하는 
     const target = 2;
     const targetLength = 2;
     const padString = "0";
-    expect(fillZero(target, targetLength, padString)).toBe("02");
+    const expected = "02";
+    expect(fillZero(target, targetLength, padString)).toBe(expected);
   });
 });
 
