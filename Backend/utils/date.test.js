@@ -1,6 +1,12 @@
-import { checkLeapYear, getFebruary, year, fillZero } from "./date.js";
+import {
+  year,
+  fillZero,
+  getFebruary,
+  checkLeapYear,
+  getMonthCalendar,
+} from "./date.js";
 
-describe("윤년 test", () => {
+describe("윤년인지 아닌지 확인하는 test", () => {
   test("윤년입니다.", () => {
     const isLeap = 1640;
     expect(checkLeapYear(isLeap)).toBe(true);
@@ -29,5 +35,19 @@ describe("target을 targetLength 자리수로 맞춰고 앞 자리에 원하는 
     const targetLength = 2;
     const padString = "0";
     expect(fillZero(target, targetLength, padString)).toBe("02");
+  });
+});
+
+describe("원하는 month의 day를 배열로 출력하는 test", () => {
+  test(`1월 Array`, () => {
+    const month = "01";
+    const expected = Array.from({ length: 31 }, () => 0);
+    expect(getMonthCalendar(month)).toStrictEqual(expected);
+  });
+
+  test(`9월 Array`, () => {
+    const month = "09";
+    const expected = Array.from({ length: 30 }, () => 0);
+    expect(getMonthCalendar(month)).toStrictEqual(expected);
   });
 });
