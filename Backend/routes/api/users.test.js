@@ -3,9 +3,31 @@ import request from "supertest";
 import { GOAL } from "../../model/default/index.js";
 import app from "../../server.js";
 
+jest.setTimeout(10000);
+
 describe("/api/users", () => {
   const token =
     "token=eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6IjU0NTQzMDEzIiwiZW1haWwiOiJ5d3RlY2hpdEBnbWFpbC5jb20iLCJ1c2VybmFtZSI6IllXVGVjaElUIiwiaWF0IjoxNjQ0ODQ5NTA0LCJleHAiOjE2NDU0NTQzMDR9.KiW72eE8_ZNos42UYOa73_KohnoaiiHEYLeMFxO9eYw";
+
+  describe("/api/users/mypage", () => {
+    test("GET mypage", async () => {
+      const response = await request(app)
+        .get("/api/users/mypage")
+        .set("Cookie", token)
+        .send();
+
+      const expectedStatus = 200;
+      const expectedMyPage = {
+        total: expect.any(Number),
+        score: expect.any(Number),
+        continuous: expect.any(Number),
+        memberDate: expect.any(Number),
+      };
+
+      expect(response.statusCode).toEqual(expectedStatus);
+      expect(response._body.mypage).toEqual(expectedMyPage);
+    });
+  });
 
   describe("/api/users/levels", () => {
     test("GET levels", async () => {
