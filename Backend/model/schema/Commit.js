@@ -40,7 +40,7 @@ const CommitSchema = new Schema(
       type: [Number],
       default: COMMIT_PER_YEAR,
     },
-    commitPerDay: {
+    commitEachDay: {
       type: [Number],
       default: MONTH,
     },
