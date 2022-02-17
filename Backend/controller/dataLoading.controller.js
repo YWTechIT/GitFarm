@@ -21,6 +21,7 @@ import {
 } from "../services/memberDate.service.js";
 import { year, month, fillZero } from "../utils/date.js";
 import { getUserObjectId } from "../utils/db.js";
+import { getReposLanguage } from "./users.controller.js";
 
 export const getLoadingData = async (req, res) => {
   const { user } = req;
@@ -66,7 +67,11 @@ export const getLoadingData = async (req, res) => {
     const memberDate = getMemberDate(user);
     await setMemberDate(req, memberDate);
 
-    // badge
+    // languages
+    const languages = await getLanguagesData(user);
+    await FindByIdAndUpdate(Commit, _id, "languages", languages);
+
+    // badges
     await setDefaultBadge(req);
 
     res.json({
