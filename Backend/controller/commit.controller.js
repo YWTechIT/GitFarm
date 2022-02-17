@@ -3,6 +3,7 @@ import { User, Commit } from "../model/index.js";
 import { ViewResponseJSON } from "./index.js";
 import {
   getContinuousCommitAllRepo,
+  getDetailTotalCommitAllRepo,
   getMonthTotalCommitAllRepo,
   getPerDayCommitAllRepo,
   getTodayTotalCommitAllRepo,
@@ -48,6 +49,7 @@ export const getCommitsTodayDetailController = async (req, res) => {
     await FindByIdAndUpdate(Commit, _id, "todayDetail", result);
     ViewResponseJSON(res, true, "todayDetail", result);
   } catch (err) {
+    console.log(err.message);
     const result = await FindValueByKey(Commit, _id, "todayDetail");
     ViewResponseJSON(res, false, "todayDetail", result);
   }
