@@ -76,16 +76,6 @@ export const getCommitsTotalPerDayController = async (req, res) => {
   const { id } = user;
   const [{ _id }] = await User.find({ id });
   const date = [year, fillZero(month, 2, "0")];
-<<<<<<< HEAD
-=======
-  // const updatedAt = await getUpdatedAtById(user, Commit);
-  // const inTime = isInTime(TARGET_TIME, updatedAt);
-  // if (inTime) {
-  //   const result = await FindValueByKey(Commit, _id, "commitPerDay");
-  //   ViewResponseJSON(res, true, "commitPerDay", result);
-  //   return;
-  // }
->>>>>>> feature-BE-DB-refactory
 
   try {
     const result = await getPerDayCommitAllRepo(user, date);
