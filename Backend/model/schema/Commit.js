@@ -4,7 +4,6 @@ import {
   COMMIT_PER_YEAR,
   LANGUAGES,
   MONTH,
-  RECENT,
   TODAY_DETAIL,
   ZERO,
 } from "../default/index.js";
@@ -20,10 +19,6 @@ const CommitSchema = new Schema(
     total: {
       type: Number,
       default: ZERO,
-    },
-    recent: {
-      type: [[Number]],
-      default: RECENT,
     },
     today: {
       type: Number,

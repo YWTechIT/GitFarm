@@ -7,7 +7,6 @@ export {
   getCommitsTodayDetailController,
   getCommitsTotalPerYearController,
   getCommitsTotalPerDayController,
-  getCommitsTotalRecentYearController,
   getCommitsContinuousController,
 } from "./commit.controller.js";
 export { getGoalController, postGoalController } from "./goal.controller.js";

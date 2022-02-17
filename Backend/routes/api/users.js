@@ -12,7 +12,6 @@ import {
   getReposLanguage,
   getCommitsTotalPerYearController,
   getCommitsTotalPerDayController,
-  getCommitsTotalRecentYearController,
   getCommitsContinuousController,
   getResolutionController,
   postResolutionController,
@@ -30,6 +29,8 @@ import {
   getTodayController,
   getDataInit,
 } from "../../controller/index.js";
+import { getAllRepoName } from "../../lib/api/Octokit/utils.js";
+import { getUserObjectId } from "../../utils/db.js";
 
 const router = express.Router();
 
@@ -47,10 +48,21 @@ export default (app) => {
   router.get("/loading", getDataInit);
 
   // commits
+  router.get("/commits/test", async (req, res) => {
+    const { user } = req;
+    const _id = await getUserObjectId(user);
+    const result = await getAllRepoName(user);
+    console;
+
+    res.json({
+      success: true,
+      message: "",
+    });
+  });
+  router.get("/commits/total", getReposTotalCommitsController);
   router.get("/commits/total", getReposTotalCommitsController);
   router.get("/commits/total/per/year/:year", getCommitsTotalPerYearController);
   router.get("/commits/total/per/day", getCommitsTotalPerDayController);
-  router.get("/commits/total/recent/year", getCommitsTotalRecentYearController);
   router.get("/commits/continuous", getCommitsContinuousController);
 
   // today
