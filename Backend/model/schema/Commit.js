@@ -20,7 +20,7 @@ const CommitSchema = new Schema(
       type: Number,
       default: ZERO,
     },
-    today: {
+    todayScore: {
       type: Number,
       default: ZERO,
     },
@@ -36,7 +36,7 @@ const CommitSchema = new Schema(
       ],
       default: TODAY_DETAIL,
     },
-    commitPerYear: {
+    commitEachMonth: {
       type: [Number],
       default: COMMIT_PER_YEAR,
     },
