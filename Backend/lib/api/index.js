@@ -3,7 +3,6 @@
 export { getLanguagesData } from "./GitHub/repos/language/index.js";
 export { getPullsAllRepo } from "./GitHub/levels/pulls/getPullsAllRepo.js";
 export { getPerDayCommitAllRepo } from "./GitHub/commits/per/day/index.js";
-export { getRecentYearTotalCommit } from "./GitHub/commits/recent/index.js";
 export { getIssuesAllRepo } from "./GitHub/levels/issues/getIssuesAllRepo.js";
 export { getMonthTotalCommitAllRepo } from "./GitHub/commits/per/month/index.js";
 export { getCommitsAllRepo } from "./GitHub/levels/commits/getCommitsAllRepo.js";

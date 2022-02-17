@@ -12,7 +12,6 @@ import {
   getReposLanguage,
   getCommitsTotalPerYearController,
   getCommitsTotalPerDayController,
-  getCommitsTotalRecentYearController,
   getCommitsContinuousController,
   getResolutionController,
   postResolutionController,
@@ -28,7 +27,7 @@ import {
   postGoalController,
   deleteUserController,
   getTodayController,
-  getDataInit,
+  getLoadingData,
 } from "../../controller/index.js";
 
 const router = express.Router();
@@ -43,14 +42,12 @@ export default (app) => {
     router,
   );
 
-  // loading
-  router.get("/loading", getDataInit);
+  // all data loading
+  router.get("/loading", getLoadingData);
 
-  // commits
   router.get("/commits/total", getReposTotalCommitsController);
   router.get("/commits/total/per/year/:year", getCommitsTotalPerYearController);
   router.get("/commits/total/per/day", getCommitsTotalPerDayController);
-  router.get("/commits/total/recent/year", getCommitsTotalRecentYearController);
   router.get("/commits/continuous", getCommitsContinuousController);
 
   // today

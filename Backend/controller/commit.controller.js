@@ -3,9 +3,9 @@ import { User, Commit } from "../model/index.js";
 import { ViewResponseJSON } from "./index.js";
 import {
   getContinuousCommitAllRepo,
+  getDetailTotalCommitAllRepo,
   getMonthTotalCommitAllRepo,
   getPerDayCommitAllRepo,
-  getRecentYearTotalCommit,
   getTodayTotalCommitAllRepo,
   getTotalCommitAllRepo,
 } from "../lib/api/index.js";
@@ -49,6 +49,7 @@ export const getCommitsTodayDetailController = async (req, res) => {
     await FindByIdAndUpdate(Commit, _id, "todayDetail", result);
     ViewResponseJSON(res, true, "todayDetail", result);
   } catch (err) {
+    console.log(err.message);
     const result = await FindValueByKey(Commit, _id, "todayDetail");
     ViewResponseJSON(res, false, "todayDetail", result);
   }
@@ -59,13 +60,6 @@ export const getCommitsTotalPerYearController = async (req, res) => {
   const { id } = user;
   const { year } = params;
   const [{ _id }] = await User.find({ id });
-  const updatedAt = await getUpdatedAtById(user, Commit);
-  const inTime = isInTime(TARGET_TIME, updatedAt);
-  if (inTime) {
-    const result = await FindValueByKey(Commit, _id, "commitPerYear");
-    ViewResponseJSON(res, true, "commitPerYear", result);
-    return;
-  }
 
   try {
     const result = await getMonthTotalCommitAllRepo(user, year);
@@ -82,6 +76,16 @@ export const getCommitsTotalPerDayController = async (req, res) => {
   const { id } = user;
   const [{ _id }] = await User.find({ id });
   const date = [year, fillZero(month, 2, "0")];
+<<<<<<< HEAD
+=======
+  // const updatedAt = await getUpdatedAtById(user, Commit);
+  // const inTime = isInTime(TARGET_TIME, updatedAt);
+  // if (inTime) {
+  //   const result = await FindValueByKey(Commit, _id, "commitPerDay");
+  //   ViewResponseJSON(res, true, "commitPerDay", result);
+  //   return;
+  // }
+>>>>>>> feature-BE-DB-refactory
 
   try {
     const result = await getPerDayCommitAllRepo(user, date);
@@ -90,27 +94,6 @@ export const getCommitsTotalPerDayController = async (req, res) => {
   } catch (err) {
     const result = await FindValueByKey(Commit, _id, "commitPerDay");
     ViewResponseJSON(res, false, "commitPerDay", result);
-  }
-};
-
-export const getCommitsTotalRecentYearController = async (req, res) => {
-  const { user } = req;
-  const _id = await getUserObjectId(user);
-  const updatedAt = await getUpdatedAtById(user, Commit);
-  const inTime = isInTime(TARGET_TIME, updatedAt);
-  if (inTime) {
-    const result = await FindValueByKey(Commit, _id, "recent");
-    ViewResponseJSON(res, true, "lastThreeYear", result);
-    return;
-  }
-
-  try {
-    const result = await getRecentYearTotalCommit(user);
-    await FindByIdAndUpdate(Commit, _id, "recent", result);
-    ViewResponseJSON(res, true, "lastThreeYear", result);
-  } catch (err) {
-    const result = await FindValueByKey(Commit, _id, "recent");
-    ViewResponseJSON(res, false, "lastThreeYear", result);
   }
 };
 

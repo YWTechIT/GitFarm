@@ -3,6 +3,7 @@
   "version": "1.0.0",
   "description": "",
   "main": "index.js",
+  "homepage": "GitFarm",
   "scripts": {
     "build": "webpack --mode=production",
     "dev": "webpack serve --open --mode=development",
