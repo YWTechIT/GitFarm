@@ -16,7 +16,7 @@ export {
   getLevelsIssuesController,
   getLevelsPullsController,
 } from "./levels.controller.js";
-export { getDataInit } from "./dataLoading.controller.js";
+export { getLoadingData } from "./dataLoading.controller.js";
 export { getRankController } from "./rank.controller.js";
 export {
   getResolutionController,
