@@ -93,7 +93,7 @@
 - [GitFarm 아카이브](https://www.notion.so/elice/952c76c7fd544f09be980c7fe8b3ed87)
 <br />
 
-## :people_holding_hands: 프로젝트 팀원 역할 분담
+## 🧑‍ 프로젝트 팀원 역할 분담
 | 이름   | 역할                   |
 | ------ | ---------------------- |
 | 안영우 | 팀장/백엔드 개발 |
