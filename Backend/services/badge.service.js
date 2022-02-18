@@ -16,8 +16,7 @@ export const getBadge = async (req) => {
 
 export const setDefaultBadge = async (req) => {
   const { user } = req;
-  const { id } = user;
-  const [{ _id }] = await User.find({ id });
+  const _id = await getUserObjectId(user);
 
   await Badge.findByIdAndUpdate(
     _id,
@@ -33,15 +32,10 @@ export const setDefaultBadge = async (req) => {
 export const setBadge = async (req) => {
   const { user } = req;
   const { badge } = req.body;
-  const { id } = user;
-  const [{ _id }] = await User.find({ id });
-
-  const [badgeDocument] = await Badge.find({ id: _id });
-  const newBadge = badgeDocument.badge;
-  newBadge[badge] = true;
+  const _id = await getUserObjectId(user);
+  const newBadge = JSON.parse(badge);
 
   await Badge.findByIdAndUpdate(_id, {
     $set: { badge: newBadge },
   });
-  return newBadge;
 };
