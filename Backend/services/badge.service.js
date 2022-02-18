@@ -1,7 +1,7 @@
 /* eslint-disable import/extensions */
 /* eslint-disable import/prefer-default-export */
 import { BADGE } from "../model/default/index.js";
-import { User, Badge } from "../model/index.js";
+import { Badge } from "../model/index.js";
 import { getUserObjectId } from "../utils/db.js";
 
 export const getBadge = async (req) => {
