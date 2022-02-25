@@ -1,19 +1,9 @@
-stages:
-  - test-backend
-  - test-frontend
+image: node:latest
 
-test-backend:
-  image: node:latest
-  stage: test-backend
-  only:
-    - master
-    - maintenance
-  script:
-    - cd Backend/
-    - echo "Backend Running successfully"
+stages:
+  - test-frontend
   
 test-frontend:
-  image: node:latest
   stage: test-frontend
   only:
     - master
