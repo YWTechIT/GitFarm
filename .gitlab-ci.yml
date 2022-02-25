@@ -1,11 +1,26 @@
 image: node:latest
 
 stages:
-  - test
+  - test-backend
+  - test-frontend
 
-test:
-  stage: test
-  script: echo "Running tests"
+test-backend:
+  stage: test-backend
   only:
     - master
     - maintenance
+  script:
+    - cd Backend/
+    - npm start
+    - echo "Backend Running successfully"
+  
+test-frontend:
+  stage: test-frontend
+  only:
+    - master
+    - maintenance
+  script:
+    - cd Frontend/
+    - npm run dev
+    - echo "Frontend Running successfully"
+
