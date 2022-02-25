@@ -11,8 +11,7 @@ test-backend:
     - maintenance
   script:
     - cd Backend/
-    - npm i
-    - npm start
+    - node ./bin/www.js
     - echo "Backend Running successfully"
   
 test-frontend:
@@ -22,7 +21,6 @@ test-frontend:
     - maintenance
   script:
     - cd Frontend/
-    - npm i
     - npm run dev
     - echo "Frontend Running successfully"
 
