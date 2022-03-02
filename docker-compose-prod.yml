@@ -6,5 +6,4 @@ services:
       dockerfile: Dockerfile
       args:
         NODE_ENV: production
-    # TODO: pm2 연동하기
-    command: npm run start
+    command: npm run deploy
