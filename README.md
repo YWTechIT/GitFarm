@@ -84,7 +84,7 @@
 
 ### 사용 스택
 
-![stack](https://user-images.githubusercontent.com/76507701/156572734-adf83b7a-228f-4fce-9efb-4a1f2ac98343.png)
+![stack](https://user-images.githubusercontent.com/76507701/156573175-658a6bd2-bd5a-47a4-86a2-0f8436c2c188.png)
 
 ### 프로젝트 구조도
 
