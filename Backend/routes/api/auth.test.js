@@ -25,7 +25,7 @@ describe("/api/auth", () => {
 
   test("GitHub 로그아웃 한 경우", async () => {
     const response = await request(app).get("/api/auth/logout").send();
-    const expectedStatus = 200;
+    const expectedStatus = 204;
 
     expect(response.statusCode).toEqual(expectedStatus);
   });
