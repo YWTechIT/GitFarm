@@ -5,9 +5,13 @@ const SECOND = 15;
 
 export const LOADING_TIME = MILLISECOND * SECOND;
 
-export const { MODE, SERVER_URL } = process.env;
-
+export const { MODE } = process.env;
+export const SERVER_URL = MODE === "production" ? "/" : "http://localhost:8888";
 export const LOGIN_URL = MODE === "production" ? "/api/auth/github" : "/main";
+export const LOADING_URL =
+  MODE === "production"
+    ? "/api/users/loading"
+    : `${SERVER_URL}/api/users/loading`;
 
 export const AXIOS = axios.create({
   baseURL: SERVER_URL,

@@ -5,10 +5,10 @@ import keys from "../config/keys.js";
 const createToken = (payload) =>
   jwt.sign(
     {
-      exp: Math.floor(Date.now() / 1000) + 60 * 60 * 24 * 14,
       data: payload,
     },
     keys.secretOrKey,
+    { expiresIn: "14d" },
   );
 
 export default createToken;

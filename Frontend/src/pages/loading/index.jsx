@@ -4,13 +4,14 @@ import { useNavigate } from "react-router-dom";
 import GitFarmLogoImg from "@/assets/icon/login/GitFarmLogo.svg";
 import Refresh from "@/assets/icon/header/refresh.svg";
 import * as Load from "./style";
+import { LOADING_URL } from "../../utils/api";
 
 function Loading() {
   const navigate = useNavigate();
 
   const getData = async () => {
     try {
-      await axios.get("http://localhost:7777/api/users/loading", {
+      await axios.get(LOADING_URL, {
         withCredentials: true,
       });
     } catch (err) {
