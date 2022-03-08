@@ -4,12 +4,12 @@ import keys from "../../config/keys.js";
 import { User } from "../../model/index.js";
 
 const GitHubStrategy = GitHub.Strategy;
-const { clientID, clientSecret, callbackURL } = keys.GitHub;
+const { clientID, clientSecret } = keys.GitHub;
 
 const config = {
   clientID,
   clientSecret,
-  callbackURL,
+  callbackURL: `${keys.domain}/api/auth/github/callback`,
 };
 
 export default new GitHubStrategy(

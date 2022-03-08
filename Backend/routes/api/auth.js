@@ -4,9 +4,6 @@ import passport from "passport";
 import httpError from "http-errors";
 import createToken from "../../utils/jwt.js";
 import { cookieConfig } from "../../utils/cookie.js";
-import dotenv from "dotenv";
-
-dotenv.config();
 
 const router = express.Router();
 
@@ -32,7 +29,7 @@ export default (app) => {
       const payload = { id, username };
       const token = await createToken(payload);
       res.cookie("token", token, cookieConfig);
-      res.redirect("http://localhost:1111/loading");
+      res.redirect("/loading");
     },
   );
 
