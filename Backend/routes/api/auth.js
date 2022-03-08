@@ -4,6 +4,7 @@ import passport from "passport";
 import httpError from "http-errors";
 import createToken from "../../utils/jwt.js";
 import { cookieConfig } from "../../utils/cookie.js";
+import keys from "../../config/keys.js";
 
 const router = express.Router();
 
@@ -25,11 +26,13 @@ export default (app) => {
       failureRedirect: "/api/auth/login/failed",
     }),
     async (req, res) => {
+      const loadingURI =
+        keys.NODE_ENV === "production" ? "/loading" : `${keys.domain}/loading`;
       const { id, username } = req.user;
       const payload = { id, username };
       const token = await createToken(payload);
       res.cookie("token", token, cookieConfig);
-      res.redirect("/loading");
+      res.redirect(loadingURI);
     },
   );
 

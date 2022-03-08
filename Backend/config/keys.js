@@ -5,6 +5,7 @@ dotenv.config();
 export default {
   NODE_ENV: process.env.NODE_ENV,
   domain: process.env.domain,
+  serverURI: process.env.serverURI,
   mongoURI: process.env.mongoURI,
   secretOrKey: process.env.secretOrKey,
   cookieMaxAge: 1000 * 60 * 60 * 24 * 14,

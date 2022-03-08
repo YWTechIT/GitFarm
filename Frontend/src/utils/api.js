@@ -6,55 +6,74 @@ const SECOND = 15;
 export const LOADING_TIME = MILLISECOND * SECOND;
 
 export const { MODE } = process.env;
-export const SERVER_URL = MODE === "production" ? "/" : "http://localhost:8888";
-export const LOGIN_URL = MODE === "production" ? "/api/auth/github" : "/main";
+
+export const SERVER_URL =
+  // eslint-disable-next-line no-nested-ternary
+  MODE === "production"
+    ? "/"
+    : MODE === "development"
+    ? "http://localhost:7777"
+    : "http://localhost:8888";
+
+export const LOGIN_URL =
+  // eslint-disable-next-line no-nested-ternary
+  MODE === "production"
+    ? "/api/auth/github"
+    : MODE === "development"
+    ? "http://localhost:7777/api/auth/github"
+    : "/main";
+
 export const LOADING_URL =
+  // eslint-disable-next-line no-nested-ternary
   MODE === "production"
     ? "/api/users/loading"
-    : `${SERVER_URL}/api/users/loading`;
+    : MODE === "development"
+    ? `${SERVER_URL}/api/users/loading`
+    : "/main";
 
 export const AXIOS = axios.create({
   baseURL: SERVER_URL,
   withCredentials: true,
 });
 
-export const todayCommitURL =
-  MODE === "production" ? "/api/users/today" : "/today";
+const mockServer = MODE === "mock";
 
-export const todayDetailCommitURL =
-  MODE === "production" ? "/api/users/today/detail" : "/detail";
+export const todayCommitURL = mockServer ? "/today" : "/api/users/today";
 
-export const myInfoURL =
-  MODE === "production" ? "/api/users/mypage" : "/mypage";
+export const todayDetailCommitURL = mockServer
+  ? "/detail"
+  : "/api/users/today/detail";
 
-export const commitsTotalPerMonthURL =
-  MODE === "production" ? "/api/users/commits/total/per/year" : "/month";
+export const myInfoURL = mockServer ? "/mypage" : "/api/users/mypage";
 
-export const commitMonthlyURL =
-  MODE === "production" ? "/api/users/commits/total/per/day" : "/perMonth";
+export const commitsTotalPerMonthURL = mockServer
+  ? "/month"
+  : "/api/users/commits/total/per/year";
 
-export const userBadgesURL =
-  MODE === "production" ? "/api/users/badges" : "/badge";
+export const commitMonthlyURL = mockServer
+  ? "/perMonth"
+  : "/api/users/commits/total/per/day";
 
-export const badgesURL = MODE === "production" ? "/api/users/badge" : "/badge";
+export const userBadgesURL = mockServer ? "/badge" : "/api/users/badges";
 
-export const goalURL =
-  MODE === "production" ? "/api/users/today/goal" : "/goal";
+export const badgesURL = mockServer ? "/badge" : "/api/users/badge";
 
-export const resolutionURL =
-  MODE === "production" ? "/api/users/resolution" : "/resolution";
+export const goalURL = mockServer ? "/goal" : "/api/users/today/goal";
 
-export const recentThreeYearURL =
-  MODE === "production"
-    ? "/api/users/commits/total/recent/year"
-    : "/recentThreeYear";
+export const resolutionURL = mockServer
+  ? "/resolution"
+  : "/api/users/resolution";
 
-export const reposLanguageURL =
-  MODE === "production" ? "/api/users/repos/language" : "/reposLanguage";
+export const recentThreeYearURL = mockServer
+  ? "/recentThreeYear"
+  : "/api/users/commits/total/recent/year";
 
-export const logoutURL = MODE === "production" ? "/api/auth/logout" : "/logout";
+export const reposLanguageURL = mockServer
+  ? "/reposLanguage"
+  : "/api/users/repos/language";
 
-export const deleteAccountURL =
-  MODE === "production" ? "/api/users/delete" : "/delete";
+export const logoutURL = mockServer ? "/logout" : "/api/auth/logout";
 
-export const rankURL = MODE === "production" ? "/api/users/rank" : "/rank";
+export const deleteAccountURL = mockServer ? "/delete" : "/api/users/delete";
+
+export const rankURL = mockServer ? "/rank" : "/api/users/rank";
