@@ -6,10 +6,15 @@ import { User } from "../../model/index.js";
 const GitHubStrategy = GitHub.Strategy;
 const { clientID, clientSecret } = keys.GitHub;
 
+const callbackURL =
+  keys.NODE_ENV === "production"
+    ? `${keys.domain}/api/auth/github/callback`
+    : `${keys.serverURI}/api/auth/github/callback`;
+
 const config = {
   clientID,
   clientSecret,
-  callbackURL: `${keys.domain}/api/auth/github/callback`,
+  callbackURL,
 };
 
 export default new GitHubStrategy(
