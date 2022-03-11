@@ -2,11 +2,14 @@ import React, { useEffect, useState } from "react";
 import LoadingModal from "@/components/LoadingModal";
 import * as api from "@/api";
 import { Container } from "@/components/Container/style";
+import { Navigate } from "react-router-dom";
 import FarmPicture from "./FarmPicture";
 import CommitDetails from "./CommitDetails";
 import * as Mains from "./style";
+import { useAuth } from "../../contexts/auth";
 
 function Main() {
+  const { isLogin } = useAuth();
   const [loading, setLoading] = useState(false);
   const [user, setUser] = useState({
     todayScore: 0,
@@ -26,8 +29,14 @@ function Main() {
   };
 
   useEffect(() => {
-    getTodayData();
+    if (isLogin) {
+      getTodayData();
+    }
   }, []);
+
+  if (!isLogin) {
+    return <Navigate to="/" />;
+  }
 
   return (
     <Container>

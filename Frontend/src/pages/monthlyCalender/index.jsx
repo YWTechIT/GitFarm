@@ -1,12 +1,14 @@
 import React, { useState } from "react";
 import DateController from "@/components/DateController";
-
+import { Navigate } from "react-router-dom";
 import { Container } from "./style";
 import Calender from "./Calender";
 import ColorGuide from "./ColorGuide";
 import SpeechBubble from "./SpeechBubble";
+import { useAuth } from "../../contexts/auth";
 
 function MonthlyCalender() {
+  const { isLogin } = useAuth();
   const toDay = new Date();
   const [date, setDate] = useState(toDay);
 
@@ -30,6 +32,11 @@ function MonthlyCalender() {
   const goToday = () => {
     setDate(toDay);
   };
+
+  if (!isLogin) {
+    return <Navigate to="/" />;
+  }
+
   return (
     <Container>
       <DateController

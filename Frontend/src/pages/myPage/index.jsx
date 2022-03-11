@@ -1,13 +1,16 @@
 import React, { useState, useEffect } from "react";
 import { Container } from "@/components/Container/style";
 import * as api from "@/api";
+import { Navigate } from "react-router-dom";
 import StartedDayCount from "./StartedDayCount";
 import LevelInfo from "./LevelInfo";
 import CommitCount from "./CommitCount";
 import AccountSettings from "./AccountSettings";
 import { ResponsiveDiv } from "./style";
+import { useAuth } from "../../contexts/auth";
 
 function MyPage() {
+  const { isLogin } = useAuth();
   const [user, setUser] = useState({
     memberDate: 0,
     totalScore: 0,
@@ -24,8 +27,14 @@ function MyPage() {
   };
 
   useEffect(() => {
-    dataFunc();
+    if (isLogin) {
+      dataFunc();
+    }
   }, []);
+
+  if (!isLogin) {
+    return <Navigate to="/" />;
+  }
 
   return (
     <Container>

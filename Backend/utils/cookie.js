@@ -19,6 +19,5 @@ export const cookieExtractor = (req) => {
 };
 
 export const cookieConfig = {
-  httpOnly: true,
   maxAge: keys.cookieMaxAge,
 };

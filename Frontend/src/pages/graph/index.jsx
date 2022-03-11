@@ -1,12 +1,15 @@
 import React, { useState } from "react";
 import DateController from "@/components/DateController";
+import { Navigate } from "react-router-dom";
 import PieChartComponent from "./PieChart";
 import LineGraph from "./LineGraph";
 import * as Graphs from "./style";
 import useUsersReposLanguage from "../../hooks/useUsersReposLanguage";
 import useCommitsPerMonth from "../../hooks/useCommitsPerMonth";
+import { useAuth } from "../../contexts/auth";
 
 function Graph() {
+  const { isLogin } = useAuth();
   const [date, setDate] = useState(new Date());
   const [reposLanguage, reposLanguageLoading] = useUsersReposLanguage();
   const [commitData, commitsLoading] = useCommitsPerMonth();
@@ -14,6 +17,10 @@ function Graph() {
   const goToday = () => {
     setDate(new Date());
   };
+
+  if (!isLogin) {
+    return <Navigate to="/" />;
+  }
 
   return (
     <Graphs.Container>

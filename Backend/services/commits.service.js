@@ -12,13 +12,14 @@ export const getScore = (commits, issues, pulls) => {
   return score;
 };
 
-export const getAccumulatedTotalScore = async (req, todayScore) => {
+export const getAccumulatedTotalScore = async (req, prevTodayScore) => {
   try {
     const { user } = req;
     const _id = await getUserObjectId(user);
     const commitDocument = await Commit.findById(_id);
-    const { totalScore, todayScore: dbTodayScore } = commitDocument;
-    const result = totalScore + todayScore - dbTodayScore;
+    const totalScore = commitDocument?.totalScore;
+    const dbTodayScore = commitDocument?.todayScore;
+    const result = totalScore + prevTodayScore - dbTodayScore;
     return result;
   } catch (e) {
     console.log(e.message);
