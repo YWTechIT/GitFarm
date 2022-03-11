@@ -1,8 +1,10 @@
 import { useState, useEffect } from "react";
 import * as api from "@/api";
 import { sliceDate } from "@/utils/graph";
+import { useAuth } from "../contexts/auth";
 
 function useCommitsPerMonth() {
+  const { isLogin } = useAuth();
   const [commitData, setCommitData] = useState([]);
   const [commitsLoading, setLoading] = useState(false);
   const { year, month } = sliceDate(new Date());
@@ -38,7 +40,9 @@ function useCommitsPerMonth() {
   };
 
   useEffect(() => {
-    getCommitsPerMonth();
+    if (isLogin) {
+      getCommitsPerMonth();
+    }
   }, []);
 
   return [commitData, commitsLoading];

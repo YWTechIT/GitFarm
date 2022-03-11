@@ -1,7 +1,9 @@
 import { useEffect, useState } from "react";
 import * as api from "@/api";
+import { useAuth } from "../contexts/auth";
 
 function useUsersReposLanguage() {
+  const { isLogin } = useAuth();
   const [reposLanguage, setReposLanguage] = useState();
   const [reposLanguageLoading, setLoading] = useState(false);
 
@@ -18,7 +20,9 @@ function useUsersReposLanguage() {
   };
 
   useEffect(() => {
-    getUsersReposLanguage();
+    if (isLogin) {
+      getUsersReposLanguage();
+    }
   }, []);
 
   return [reposLanguage, reposLanguageLoading];

@@ -1,12 +1,15 @@
 import React, { useEffect, useState } from "react";
 import { Container } from "@/components/Container/style";
 import * as api from "@/api";
+import { Navigate } from "react-router-dom";
 import RankTitle from "./RankTitle";
 import Rank from "./Rank";
 import * as Ranks from "./style";
 import Skeletons from "./Skeleton";
+import { useAuth } from "../../contexts/auth";
 
 function RankPage() {
+  const { isLogin } = useAuth();
   const [myRank, setMyRank] = useState({});
   const [userRank, setUserRank] = useState([]);
   const [loading, setLoading] = useState(false);
@@ -25,8 +28,14 @@ function RankPage() {
   };
 
   useEffect(() => {
-    getRank();
+    if (isLogin) {
+      getRank();
+    }
   }, []);
+
+  if (!isLogin) {
+    return <Navigate to="/" />;
+  }
 
   return (
     <Container>

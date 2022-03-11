@@ -3,11 +3,14 @@ import * as api from "@/api";
 import LoadingModal from "@/components/LoadingModal";
 import { AllBadgesFuncion } from "@/utils/badge";
 import * as BadgeType from "@/utils/badgesIcon";
+import { Navigate } from "react-router-dom";
 import SeedIcon from "../../assets/icon/header/seeds.svg";
 import * as Badges from "./style";
 import Lock from "../../assets/icon/lock.svg";
+import { useAuth } from "../../contexts/auth";
 
 function Badge() {
+  const { isLogin } = useAuth();
   const [loading, setLoading] = useState(false);
   const [userBadges, setUserBadges] = useState([]);
 
@@ -43,8 +46,14 @@ function Badge() {
   };
 
   useLayoutEffect(() => {
-    getUserBadges();
+    if (isLogin) {
+      getUserBadges();
+    }
   }, []);
+
+  if (!isLogin) {
+    return <Navigate to="/" />;
+  }
 
   const trueBadge = useMemo(() => userBadgesTurnTrue(), [userBadges]);
   return (
