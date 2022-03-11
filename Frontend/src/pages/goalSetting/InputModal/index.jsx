@@ -1,4 +1,9 @@
-import React, { useEffect, useState } from "react";
+import React, {
+  useEffect,
+  useState,
+  forwardRef,
+  useImperativeHandle,
+} from "react";
 import Modal from "@/components/Modal";
 import PropTypes from "prop-types";
 import * as api from "@/api";
@@ -6,10 +11,17 @@ import * as api from "@/api";
 import { Wrapper } from "./style";
 import Input from "../Input";
 
-function InputModal({ setOpenModal, modalType }) {
+const InputModal = forwardRef(({ modalType }, ref) => {
   const [loading, setLoading] = useState(false);
   const [value, setValue] = useState("");
   const [validation, setValidation] = useState("");
+  const [openModal, setOpenModal] = useState(false);
+
+  useImperativeHandle(ref, () => ({
+    show() {
+      setOpenModal(true);
+    },
+  }));
 
   const getGoalValue = async () => {
     setLoading(true);
@@ -51,7 +63,7 @@ function InputModal({ setOpenModal, modalType }) {
     if (modalType === "resolution") {
       getResolutionValue();
     }
-  }, []);
+  }, [openModal]);
 
   const inputType = modalType === "goal" ? "number" : "text";
   const content = {
@@ -92,28 +104,29 @@ function InputModal({ setOpenModal, modalType }) {
   };
 
   return (
-    <Wrapper>
-      <Modal
-        setOpenModal={setOpenModal}
-        title={content[modalType].title}
-        twoBtn
-        confirmHandler={confirmHandler}
-        inputModal
-        validation={validation}
-      >
-        <Input
-          value={!loading ? value : ""}
-          onChangeCallback={onChangeHandler}
-          inputType={inputType}
-          placeholder={content[modalType].text}
-        />
-      </Modal>
-    </Wrapper>
+    openModal && (
+      <Wrapper>
+        <Modal
+          setOpenModal={setOpenModal}
+          title={content[modalType].title}
+          twoBtn
+          confirmHandler={confirmHandler}
+          inputModal
+          validation={validation}
+        >
+          <Input
+            value={!loading ? value : ""}
+            onChangeCallback={onChangeHandler}
+            inputType={inputType}
+            placeholder={content[modalType].text}
+          />
+        </Modal>
+      </Wrapper>
+    )
   );
-}
+});
 
 InputModal.propTypes = {
-  setOpenModal: PropTypes.func.isRequired,
   modalType: PropTypes.string.isRequired,
 };
 

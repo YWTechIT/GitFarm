@@ -1,14 +1,8 @@
 import React, { useState, useLayoutEffect } from "react";
 import PropTypes from "prop-types";
-import * as api from "@/api";
 import LoadingModal from "@/components/LoadingModal";
-
-import {
-  makeCalendar,
-  getFirstAndLastDate,
-  matchDateCommit,
-  stageCalc,
-} from "@/utils/calendar";
+import { makeCalendar, getFirstAndLastDate, stageCalc } from "@/utils/calendar";
+import useCommitMonthlyCount from "../../../hooks/useCommitMonthlyCount";
 import {
   CalenderContainer,
   MonthlyRow,
@@ -17,36 +11,14 @@ import {
   DateCell,
 } from "./style";
 
-function Calender({ date }) {
-  const [loading, setLoading] = useState(false);
-
-  const [commitCountsPerDate, setCommitCountsPerDate] = useState([]);
+function Calendar({ date }) {
   const days = ["일", "월", "화", "수", "목", "금", "토"];
   const [dates, setDates] = useState([]);
   const currentMonth = date.getMonth();
   const { firstDate, lastDate } = getFirstAndLastDate(date);
-
-  const getCommitMonthlyCount = async () => {
-    setLoading(true);
-
-    // const year = String(date.getFullYear());
-    // const month = fillZeroMonth(date.getMonth() + 1);
-    const commitMonthData = await api.getCommitMonthly();
-    if (commitMonthData.success) {
-      const { commitEachDay } = commitMonthData;
-      setCommitCountsPerDate(matchDateCommit(firstDate, commitEachDay));
-      setLoading(false);
-      return;
-    }
-    setCommitCountsPerDate([
-      0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0,
-      0, 0, 0, 0, 0, 0, 0,
-    ]);
-    setLoading(false);
-  };
+  const [loading, commitCountsPerDate] = useCommitMonthlyCount(firstDate);
 
   useLayoutEffect(() => {
-    getCommitMonthlyCount(setCommitCountsPerDate);
     setDates(makeCalendar(firstDate, lastDate));
   }, [date]);
 
@@ -97,8 +69,8 @@ function Calender({ date }) {
   );
 }
 
-Calender.propTypes = {
+Calendar.propTypes = {
   date: PropTypes.instanceOf(Date).isRequired,
 };
 
-export default Calender;
+export default Calendar;

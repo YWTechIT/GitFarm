@@ -20,18 +20,25 @@ function Badge() {
       api.getUserBadges(),
       api.getMyInfo(),
       api.getRank(),
-    ]);
-    const { newUserBadges, newBadges } = await AllBadgesFuncion(
-      badgeData.value.badge,
-      mypageData.value.mypage,
-      rankData.value.data,
+    ]).then((results) =>
+      results.map((result) =>
+        result.status === "fulfilled" ? result.value : [],
+      ),
     );
+    if (badgeData.length !== 0) {
+      const { newUserBadges, newBadges } = await AllBadgesFuncion(
+        badgeData.badge,
+        mypageData.mypage,
+        rankData.data,
+      );
 
-    if (newBadges.length !== 0) {
-      api.postBadges(newUserBadges);
+      if (newBadges.length !== 0) {
+        api.postBadges(newUserBadges);
+      }
+
+      setUserBadges(newUserBadges);
     }
 
-    setUserBadges(newUserBadges);
     setLoading(false);
   };
 

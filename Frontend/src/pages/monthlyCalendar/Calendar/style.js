@@ -2,7 +2,7 @@ import styled from "styled-components";
 
 export const CalenderContainer = styled.div`
   width: 350px;
-  min-height: 375px;
+  height: 400px;
   background-color: white;
   border-radius: 10px;
 `;

@@ -10,7 +10,7 @@ import { AuthProvider } from "./contexts/auth";
 const Login = lazy(() => import("./pages/login"));
 const Loading = lazy(() => import("./pages/loading"));
 const Main = lazy(() => import("./pages/main"));
-const MonthlyCalender = lazy(() => import("./pages/monthlyCalender"));
+const MonthlyCalendar = lazy(() => import("./pages/monthlyCalendar"));
 const RankPage = lazy(() => import("./pages/rank"));
 const Graph = lazy(() => import("./pages/graph"));
 const MyPage = lazy(() => import("./pages/myPage"));
@@ -29,7 +29,7 @@ function App() {
             <Route path="/" element={<Login />} />
             <Route path="/loading" element={<Loading />} />
             <Route path="/main" element={<Main />} />
-            <Route path="/calendar" element={<MonthlyCalender />} />
+            <Route path="/calendar" element={<MonthlyCalendar />} />
             <Route path="/rank" element={<RankPage />} />
             <Route path="/graph" element={<Graph />} />
             <Route path="/mypage" element={<MyPage />} />
