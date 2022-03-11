@@ -1,5 +1,5 @@
 import styled from "styled-components";
-import { stageFunc } from "../Calender/style";
+import { stageFunc } from "../Calendar/style";
 
 export const Circle = styled.div`
   background-color: green;

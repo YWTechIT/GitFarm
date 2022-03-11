@@ -1,9 +1,9 @@
 import React from "react";
 import { useLocation, Link } from "react-router-dom";
-import Calender from "@/assets/icon/nav/calender_nav.svg";
 import Rranking from "@/assets/icon/nav/ranking_nav.svg";
 import Graph from "@/assets/icon/nav/graph_nav.svg";
 import Mypage from "@/assets/icon/nav/mypage_nav.svg";
+import Calendar from "@/assets/icon/nav/calendar_nav.svg";
 import * as Navs from "./style";
 
 function Nav() {
@@ -13,8 +13,8 @@ function Nav() {
       <Navs.Container>
         <Navs.List>
           <Navs.Item>
-            <Link to="/calender">
-              <Calender width="22px" height="100%" />
+            <Link to="/Calendar">
+              <Calendar width="22px" height="100%" />
             </Link>
           </Navs.Item>
           <Navs.Item>
@@ -58,7 +58,7 @@ function Nav() {
                 </Link>
               </Navs.Item>
               <Navs.Item>
-                <Link to="/calender">
+                <Link to="/calendar">
                   <Navs.String>이달의 커밋</Navs.String>
                 </Link>
               </Navs.Item>

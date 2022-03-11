@@ -1,5 +1,6 @@
-import React, { useEffect, useState } from "react";
+import React, { useEffect, useState, useRef } from "react";
 import { Navigate } from "react-router-dom";
+
 import CommitGoal from "./CommitGoal";
 import Resolution from "./Resolution";
 import InputModal from "./InputModal";
@@ -9,12 +10,12 @@ import { useAuth } from "../../contexts/auth";
 function GoalSetting() {
   const { isLogin } = useAuth();
   const [randomNum, setRandomNum] = useState(undefined);
-  const [openModal, setOpenModal] = useState(false);
-  const [modalType, setModalType] = useState(0);
+  const [modalType, setModalType] = useState("goal");
+  const modalRef = useRef();
 
   const modalOpenHandler = (type) => {
     setModalType(type);
-    setOpenModal(true);
+    modalRef.current.show();
   };
 
   useEffect(() => {
@@ -36,9 +37,8 @@ function GoalSetting() {
           onClick={() => modalOpenHandler("resolution")}
           randomViewNum={randomNum}
         />
-        {openModal && (
-          <InputModal setOpenModal={setOpenModal} modalType={modalType} />
-        )}
+
+        <InputModal modalType={modalType} ref={modalRef} />
       </Wrapper>
     </Container>
   );
