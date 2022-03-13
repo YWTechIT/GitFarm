@@ -13,7 +13,7 @@ function Nav() {
       <Navs.Container>
         <Navs.List>
           <Navs.Item>
-            <Link to="/Calendar">
+            <Link to="/calendar">
               <Calendar width="22px" height="100%" />
             </Link>
           </Navs.Item>
