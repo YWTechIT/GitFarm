@@ -1,5 +1,15 @@
 version: "3"
 services:
+  nginx:
+    image: nginx
+    volumes:
+      - ./Frontend/dist/:/usr/share/nginx/html
+      - ./Nginx/nginx-dev.conf:/etc/nginx/nginx.conf
+    ports:
+      - "1111:80"
+    depends_on:
+      - backend
+
   backend:
     build:
       context: .
