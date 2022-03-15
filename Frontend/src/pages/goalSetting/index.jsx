@@ -3,19 +3,28 @@ import { Navigate } from "react-router-dom";
 
 import CommitGoal from "./CommitGoal";
 import Resolution from "./Resolution";
-import InputModal from "./InputModal";
+
 import { Container, TitleText, Wrapper } from "./style";
 import { useAuth } from "../../contexts/auth";
+import InputGoalModal from "./InputGoalModal";
+
+import InputResolutionModal from "./InputResolutionModal";
 
 function GoalSetting() {
   const { isLogin } = useAuth();
   const [randomNum, setRandomNum] = useState(undefined);
-  const [modalType, setModalType] = useState("goal");
-  const modalRef = useRef();
+  const [openModal, setOpenModal] = useState(false);
+  const resolutiongoalModalRef = useRef();
 
   const modalOpenHandler = (type) => {
-    setModalType(type);
-    modalRef.current.show();
+    if (type === "goal") {
+      setOpenModal(true);
+      return;
+    }
+
+    if (type === "resolution") {
+      resolutiongoalModalRef.current.show();
+    }
   };
 
   useEffect(() => {
@@ -38,7 +47,10 @@ function GoalSetting() {
           randomViewNum={randomNum}
         />
 
-        <InputModal modalType={modalType} ref={modalRef} />
+        {openModal && (
+          <InputGoalModal openModal={openModal} setOpenModal={setOpenModal} />
+        )}
+        <InputResolutionModal ref={resolutiongoalModalRef} />
       </Wrapper>
     </Container>
   );

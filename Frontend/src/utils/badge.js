@@ -1,3 +1,5 @@
+import * as BadgeType from "@/utils/badgesIcon";
+
 export const ACHIEVEMENT500 = 0;
 export const ACHIEVEMENT1000 = 1;
 export const ACHIEVEMENT5000 = 2;
@@ -13,7 +15,6 @@ export const LEVEL2 = 11;
 export const LEVEL3 = 12;
 export const LEVEL4 = 13;
 export const LEVEL5 = 14;
-
 // 500커밋, 1000커밋, 5000커밋 달성
 export const commitAchievement = (commitTotal, userBadges, arrayOfBadgesId) => {
   if (!userBadges[ACHIEVEMENT500] && commitTotal >= 500) {
@@ -95,4 +96,14 @@ export const AllBadgesFuncion = async (userBadges, mypageData, rankData) => {
     newUserBadges[badgeId] = true;
   });
   return { newUserBadges, newBadges };
+};
+
+export const userBadgesTurnTrue = (userBadges) => {
+  const newBadges = BadgeType.badgesType.map((badges) => {
+    if (userBadges[badges.id] === true) {
+      return { ...badges, userHaveBadge: true };
+    }
+    return badges;
+  });
+  return newBadges;
 };

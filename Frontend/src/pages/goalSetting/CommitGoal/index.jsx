@@ -1,22 +1,16 @@
 import React, { useEffect, useState } from "react";
 import LeafIcon from "@/assets/icon/blank-leaf.svg";
 import PropTypes from "prop-types";
-import * as api from "@/api";
+import useGoalValue from "../../../hooks/useGoalValue";
 
 import { Container, Title, IconWrapper, GoalNum, Description } from "./style";
 
 function CommitGoal({ onClick }) {
   const [goalNum, setGoalNum] = useState();
-
-  const getGoalValue = async () => {
-    const { success, goal } = await api.getGoal("goal");
-    if (success) {
-      setGoalNum(goal);
-    }
-  };
+  const [goalLoading, getGoalValue] = useGoalValue();
 
   useEffect(() => {
-    getGoalValue();
+    getGoalValue().then((result) => setGoalNum(result));
   });
 
   return (
@@ -31,7 +25,9 @@ function CommitGoal({ onClick }) {
       <IconWrapper>
         <LeafIcon />
       </IconWrapper>
-      <GoalNum length={String(goalNum).length}>{goalNum}</GoalNum>
+      <GoalNum length={String(goalNum).length}>
+        {goalLoading && goalNum}
+      </GoalNum>
     </Container>
   );
 }
