@@ -1,27 +1,26 @@
 {
   "short_name": "GitFarm",
   "name": "GitFarm",
+  "description": "나만의 GitHub 관리소",
   "icons": [
     {
-      "src": "https://git-farm.s3.ap-northeast-2.amazonaws.com/GitFarmLogo.png",
-      "sizes": "128x128",
+      "src": "favicon.ico",
+      "sizes": "64x64 32x32 24x24 16x16",
+      "type": "image/x-icon"
+    },
+    {
+      "src": "logo.png",
+      "sizes": "256x256",
       "type": "image/png"
     },
     {
-      "src": "https://git-farm.s3.ap-northeast-2.amazonaws.com/GitFarmLogo.png",
-      "sizes": "192x192",
-      "type": "image/png"
-    },
-    {
-      "src": "https://git-farm.s3.ap-northeast-2.amazonaws.com/GitFarmLogo.png",
+      "src": "logo.png",
       "sizes": "512x512",
       "type": "image/png"
     }
   ],
   "start_url": ".",
-  "display": "minimal-ui",
-  "orientation": "portrait",
+  "display": "standalone",
   "theme_color": "#008000",
-  "background_color": "#f6f8ef",
-  "crossorigin": "use-credentials"
+  "background_color": "#f6f8ef"
 }

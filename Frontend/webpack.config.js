@@ -3,6 +3,8 @@ const path = require("path");
 const HtmlWebpackPlugin = require("html-webpack-plugin");
 const { CleanWebpackPlugin } = require("clean-webpack-plugin");
 const MiniCssExtractPlugin = require("mini-css-extract-plugin");
+const { InjectManifest } = require("workbox-webpack-plugin");
+const CopyPlugin = require("copy-webpack-plugin");
 
 module.exports = {
   entry: {
@@ -54,6 +56,20 @@ module.exports = {
   plugins: [
     new HtmlWebpackPlugin({
       template: "public/index.html",
+      title: "Progressive Web Application",
+    }),
+    new InjectManifest({
+      swSrc: "./public/service-worker.js", // service-worker file location before build
+      swDest: "service-worker.js", //  service-worker file location after build(default: dist/)
+    }),
+    new CopyPlugin({
+      patterns: [
+        { from: "./public/favicon.ico", to: "" },
+        { from: "./public/manifest.json", to: "" },
+        { from: "./public/sad-face-logo.svg", to: "" },
+        { from: "./public/offline.html", to: "" },
+        { from: "./public/logo.png", to: "" },
+      ],
     }),
     new CleanWebpackPlugin(),
     new MiniCssExtractPlugin({
@@ -73,7 +89,7 @@ module.exports = {
     },
     static: {
       directory: path.resolve(__dirname, "public"),
-      publicPath: "/assets", // localhost:port/assets/public
+      publicPath: "/", // localhost:port/assets/public
     },
     compress: true,
     port: 1111,
