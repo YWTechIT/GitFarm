@@ -7,7 +7,7 @@ import useGoalValue from "../../../hooks/useGoalValue";
 function InputGoalModal({ openModal, setOpenModal }) {
   const [value, setValue] = useState("");
   const [validation, setValidation] = useState("");
-  const [goalLoading, getGoalValue] = useGoalValue();
+  const { getGoalValue } = useGoalValue();
   const postGoalInput = async (goalNum) => {
     await api.postGoal(goalNum);
   };
@@ -36,7 +36,6 @@ function InputGoalModal({ openModal, setOpenModal }) {
       setValue={setValue}
       inputType="number"
       placeholder="숫자를 입력하세요. (목표 일일 커밋 수)"
-      loading={goalLoading}
     />
   );
 }
