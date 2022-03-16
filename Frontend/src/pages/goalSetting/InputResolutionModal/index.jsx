@@ -12,7 +12,7 @@ const InputResolutionModal = forwardRef((props, ref) => {
   const [value, setValue] = useState("");
   const [validation, setValidation] = useState("");
   const [openModal, setOpenModal] = useState(false);
-  const [resolutionLoading, getResolutionValue] = useResolutionValue();
+  const { resolutionValue } = useResolutionValue();
 
   useImperativeHandle(ref, () => ({
     show() {
@@ -21,12 +21,13 @@ const InputResolutionModal = forwardRef((props, ref) => {
   }));
 
   useEffect(() => {
-    getResolutionValue().then((result) => setValue(result));
-  }, []);
+    setValue(resolutionValue);
+  }, [resolutionValue]);
 
   const postResolutionInput = async (postResolution) => {
     await api.postResolution(postResolution);
   };
+
   const confirmHandler = async () => {
     if (value.length <= 0) {
       setValidation("값을 입력해주세요");
@@ -36,6 +37,7 @@ const InputResolutionModal = forwardRef((props, ref) => {
     await postResolutionInput(value);
     setOpenModal(false);
   };
+
   return (
     openModal && (
       <InputModal
@@ -48,7 +50,6 @@ const InputResolutionModal = forwardRef((props, ref) => {
         setValue={setValue}
         inputType="text"
         placeholder="메세지를 설정하세요. (최대 20자)"
-        loading={resolutionLoading}
       />
     )
   );

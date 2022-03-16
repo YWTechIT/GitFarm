@@ -2,12 +2,12 @@ import React, { useEffect, useState } from "react";
 import LeafIcon from "@/assets/icon/blank-leaf.svg";
 import PropTypes from "prop-types";
 import useGoalValue from "../../../hooks/useGoalValue";
-
 import { Container, Title, IconWrapper, GoalNum, Description } from "./style";
 
 function CommitGoal({ onClick }) {
   const [goalNum, setGoalNum] = useState();
-  const [goalLoading, getGoalValue] = useGoalValue();
+
+  const { getGoalValue } = useGoalValue();
 
   useEffect(() => {
     getGoalValue().then((result) => setGoalNum(result));
@@ -25,9 +25,7 @@ function CommitGoal({ onClick }) {
       <IconWrapper>
         <LeafIcon />
       </IconWrapper>
-      <GoalNum length={String(goalNum).length}>
-        {goalLoading && goalNum}
-      </GoalNum>
+      <GoalNum length={String(goalNum).length}>{goalNum}</GoalNum>
     </Container>
   );
 }
