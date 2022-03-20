@@ -3,7 +3,7 @@ import PropTypes from "prop-types";
 import { isCheckLogin } from "../utils/cookie";
 import { IS_LOGIN } from "./actionTypes";
 
-const AuthContext = createContext(null);
+export const AuthContext = createContext(null);
 
 const initialState = {
   isLogin: false,
