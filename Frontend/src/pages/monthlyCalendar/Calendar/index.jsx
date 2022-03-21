@@ -16,7 +16,7 @@ function Calendar({ date }) {
   const [dates, setDates] = useState([]);
   const currentMonth = date.getMonth();
   const { firstDate, lastDate } = getFirstAndLastDate(date);
-  const [loading, commitCountsPerDate] = useCommitMonthlyCount(firstDate);
+  const { loading, commitCountsPerDate } = useCommitMonthlyCount(firstDate);
 
   useLayoutEffect(() => {
     setDates(makeCalendar(firstDate, lastDate));

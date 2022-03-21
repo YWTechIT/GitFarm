@@ -71,7 +71,7 @@ export const matchDateCommit = (firstDate, commitCountsPerDate) => {
   const firstDateMonthLastDay = firstDateMonthLast.getDate();
   const firstDateDay = firstDate.getDate();
   if (firstDateDay === 1) {
-    return;
+    return commitCountsPerDate;
   }
   const prevMonthDate = firstDateMonthLastDay - firstDateDay + 1;
   const newArr = [...commitCountsPerDate];
