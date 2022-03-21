@@ -1,5 +1,5 @@
 import { useState, useEffect } from "react";
-import * as api from "@/api";
+import { getCommitMonthly } from "@/api";
 import { matchDateCommit } from "@/utils/calendar";
 import { useAuth } from "../contexts/auth";
 
@@ -11,7 +11,7 @@ function useCommitMonthlyCount(firstDate) {
   const getCommitMonthlyCount = async () => {
     setLoading(true);
 
-    const commitMonthData = await api.getCommitMonthly();
+    const commitMonthData = await getCommitMonthly();
     if (commitMonthData.success) {
       const { commitEachDay } = commitMonthData;
       setCommitCountsPerDate(matchDateCommit(firstDate, commitEachDay));
@@ -29,7 +29,7 @@ function useCommitMonthlyCount(firstDate) {
       getCommitMonthlyCount();
     }
   }, []);
-  return [loading, commitCountsPerDate];
+  return { loading, commitCountsPerDate };
 }
 
 export default useCommitMonthlyCount;

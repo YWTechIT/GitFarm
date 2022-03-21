@@ -11,7 +11,7 @@ import useUserBadges from "../../hooks/useUserBadges";
 
 function Badge() {
   const { isLogin } = useAuth();
-  const [loading, userBadges] = useUserBadges();
+  const { loading, userBadges } = useUserBadges();
 
   if (!isLogin) {
     return <Navigate to="/" />;
@@ -28,7 +28,7 @@ function Badge() {
         {!loading ? (
           trueBadge.map((badge) => (
             <Badges.PerBadge key={`${badge.id}-${badge.title}`}>
-              {badge.userHaveBadge ? badge.icon : <Lock />}
+              {badge.userHaveBadge ? <badge.icon /> : <Lock />}
               <p>{badge.title}</p>
             </Badges.PerBadge>
           ))

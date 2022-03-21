@@ -1,6 +1,6 @@
 /* eslint-disable consistent-return */
 import { useCallback } from "react";
-import * as api from "@/api";
+import { getGoal } from "@/api";
 import { useAuth } from "../contexts/auth";
 
 function useGoalValue() {
@@ -8,7 +8,7 @@ function useGoalValue() {
 
   const getGoalValue = useCallback(async () => {
     if (isLogin) {
-      const { success, goal } = await api.getGoal();
+      const { success, goal } = await getGoal();
       if (success) {
         if (goal !== 0) {
           return goal;

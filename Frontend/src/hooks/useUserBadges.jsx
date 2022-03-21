@@ -40,7 +40,7 @@ function useUserBadges() {
       getUserBadges();
     }
   }, []);
-  return [loading, userBadges];
+  return { loading, userBadges };
 }
 
 export default useUserBadges;

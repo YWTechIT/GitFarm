@@ -12,9 +12,9 @@ function useResolutionValue() {
     if (success) {
       if (resolution.length !== 0) {
         setResolutionValue(resolution);
+      } else {
+        setResolutionValue("우주최강 개발자가 될거야!");
       }
-    } else {
-      setResolutionValue("우주최강 개발자가 될거야!");
     }
   };
   useEffect(() => {
