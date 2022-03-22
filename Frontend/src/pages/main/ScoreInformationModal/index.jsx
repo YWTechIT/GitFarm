@@ -1,5 +1,6 @@
 import React from "react";
 import Modal from "@/components/Modal";
+import PropTypes from "prop-types";
 import Description from "@/components/Description";
 import WinkIcon from "@/assets/icon/wink-face.svg";
 import { Wrapper, ScoreText } from "@/pages/setting/DeleteAccountModal/style";
@@ -23,5 +24,7 @@ function ScoreInformationModal({ setOpenModal }) {
     </Modal>
   );
 }
-
+ScoreInformationModal.propTypes = {
+  setOpenModal: PropTypes.func.isRequired,
+};
 export default ScoreInformationModal;
