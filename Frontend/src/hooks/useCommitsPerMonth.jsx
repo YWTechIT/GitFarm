@@ -42,7 +42,7 @@ function useCommitsPerMonth() {
       getCommitsPerMonth();
     }
   }, []);
-
+  // console.log(commitData, commitsLoading);
   return [commitData, commitsLoading];
 }
 export default useCommitsPerMonth;

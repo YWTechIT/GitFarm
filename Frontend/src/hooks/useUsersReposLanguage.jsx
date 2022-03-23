@@ -1,5 +1,5 @@
 import { useEffect, useState } from "react";
-import * as api from "@/api";
+import { getReposLanguage } from "@/api";
 import { useAuth } from "../contexts/auth";
 
 function useUsersReposLanguage() {
@@ -10,9 +10,9 @@ function useUsersReposLanguage() {
   const getUsersReposLanguage = async () => {
     setLoading(true);
 
-    const res = await api.getReposLanguage();
-    if (res.success) {
-      setReposLanguage(res.languages);
+    const { success, languages } = await getReposLanguage();
+    if (success) {
+      setReposLanguage(languages);
     } else {
       setReposLanguage([]);
     }
