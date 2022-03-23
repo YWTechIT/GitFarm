@@ -150,10 +150,28 @@ export const mockReposLanguage = [
 ];
 
 export const mockCommitData = [
-  { name: "1월", commit: 34 },
-  { name: "2월", commit: 18 },
-  { name: "3월", commit: 34 },
+  { commit: 34, name: "1월" },
+  { commit: 18, name: "2월" },
+  { commit: 0, name: "3월" },
 ];
+
+export const mockCommitsTotalPerMonthData = {
+  success: true,
+  id: 2022,
+  commitEachMonth: [0, 34, 18, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0],
+};
+
+export const mockFalseCommitsTotalPerMonthData = {
+  success: false,
+  id: 2022,
+  commitEachMonth: [0, 34, 18, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0],
+};
+
+export const mockWrongCommitsTotalPerMonthData = {
+  success: true,
+  id: 2022,
+  commitEachMonth: [0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0],
+};
 
 export const languageRatioArray = [
   { name: "JavaScript", value: 43.24 },
