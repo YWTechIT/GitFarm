@@ -1,5 +1,5 @@
 import { useState, useEffect } from "react";
-import * as api from "@/api";
+import { getCommitsTotalPerMonth } from "@/api";
 import { sliceDate } from "@/utils/graph";
 import { useAuth } from "../contexts/auth";
 
@@ -28,10 +28,8 @@ function useCommitsPerMonth() {
 
   const getCommitsPerMonth = async () => {
     setLoading(true);
-    const data = await api.getCommitsTotalPerMonth(year);
-
-    if (data.success) {
-      const { commitEachMonth } = data;
+    const { success, commitEachMonth } = await getCommitsTotalPerMonth(year);
+    if (success) {
       makeCommitEachMonthData(commitEachMonth);
     } else {
       setCommitData([]);
