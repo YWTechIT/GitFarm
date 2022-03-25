@@ -23,6 +23,10 @@ function useUsersReposLanguage() {
     if (isLogin) {
       getUsersReposLanguage();
     }
+    return () => {
+      setReposLanguage();
+      setLoading(false);
+    };
   }, []);
 
   return [reposLanguage, reposLanguageLoading];
