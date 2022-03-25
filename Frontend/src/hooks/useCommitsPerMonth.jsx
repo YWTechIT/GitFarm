@@ -41,8 +41,12 @@ function useCommitsPerMonth() {
     if (isLogin) {
       getCommitsPerMonth();
     }
+    return () => {
+      setCommitData([]);
+      setLoading(false);
+    };
   }, []);
-  // console.log(commitData, commitsLoading);
+
   return [commitData, commitsLoading];
 }
 export default useCommitsPerMonth;
