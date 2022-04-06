@@ -26,8 +26,11 @@ describe("LineGraphContainer 렌더링 확인", () => {
 
 describe("commitData가 recharts에서 잘 출력 되는지 확인", () => {
   test("commitData가 잘 들어고 차트에 이번 달이 포함된 경우", () => {
-    render(<LineGraph commitData={mockCommitData} loading={false} />);
     const thisMonth = new Date().getMonth() + 1;
+    const mockCommitDataUntilThisMonth = mockCommitData.slice(0, thisMonth);
+    render(
+      <LineGraph commitData={mockCommitDataUntilThisMonth} loading={false} />,
+    );
     const outputElement = screen.getByText(`${thisMonth}월`);
     expect(outputElement).toBeInTheDocument();
   });
@@ -39,9 +42,18 @@ describe("commitData가 recharts에서 잘 출력 되는지 확인", () => {
   });
 
   test("다음 달 데이터가 없는지 확인", () => {
-    render(<LineGraph commitData={mockCommitData} loading={false} />);
-    const thisMonth = new Date().getMonth() + 2;
-    const outputElement = screen.queryByText(`${thisMonth}월`);
-    expect(outputElement).toBeNull();
+    const thisMonth = new Date().getMonth() + 1;
+    const nextMonth = new Date().getMonth() + 2;
+    const mockCommitDataUntilThisMonth = mockCommitData.slice(0, thisMonth);
+
+    render(
+      <LineGraph commitData={mockCommitDataUntilThisMonth} loading={false} />,
+    );
+
+    const outputThisMonthElement = screen.queryByText(`${thisMonth}월`);
+    const outputNextMonthElement = screen.queryByText(`${nextMonth}월`);
+
+    expect(outputThisMonthElement).toBeInTheDocument();
+    expect(outputNextMonthElement).not.toBeInTheDocument();
   });
 });

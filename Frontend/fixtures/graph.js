@@ -152,13 +152,22 @@ export const mockReposLanguage = [
 export const mockCommitData = [
   { commit: 34, name: "1월" },
   { commit: 18, name: "2월" },
-  { commit: 0, name: "3월" },
+  { commit: 10, name: "3월" },
+  { commit: 21, name: "4월" },
+  { commit: 2, name: "5월" },
+  { commit: 4, name: "6월" },
+  { commit: 5, name: "7월" },
+  { commit: 6, name: "8월" },
+  { commit: 7, name: "9월" },
+  { commit: 8, name: "10월" },
+  { commit: 9, name: "11월" },
+  { commit: 10, name: "12월" },
 ];
 
 export const mockCommitsTotalPerMonthData = {
   success: true,
   id: 2022,
-  commitEachMonth: [0, 34, 18, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0],
+  commitEachMonth: [0, 34, 18, 10, 21, 2, 4, 5, 6, 7, 8, 9, 10],
 };
 
 export const mockFalseCommitsTotalPerMonthData = {
