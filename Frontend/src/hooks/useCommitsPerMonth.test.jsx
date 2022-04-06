@@ -22,7 +22,11 @@ describe("useCommitsPerMonth succes가 true && 데이터가 정상일 때", () =
       { wrapper },
     );
     await waitForNextUpdate();
-    expect(result.current[0]).toStrictEqual(mockCommitData);
+
+    const thisMonth = new Date().getMonth() + 1;
+    const mockCommitDataUntilThisMonth = mockCommitData.slice(0, thisMonth);
+
+    expect(result.current[0]).toStrictEqual(mockCommitDataUntilThisMonth);
     expect(result.current[1]).toStrictEqual(false);
   });
 });
