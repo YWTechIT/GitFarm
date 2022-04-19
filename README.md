@@ -1,15 +1,15 @@
 # <img src="https://user-images.githubusercontent.com/76507701/154678507-0688fbe5-36b9-4c45-8d07-9566eb3f3612.png"  width="25" height="25" margin-right="10px"/> GitFarm
-### 깃 잔디를 풍성하게 심도록 도와주는 GitHub 관리 웹 앱
+### 📍 깃 잔디를 풍성하게 심도록 도와주는 GitHub 관리 웹 앱
 <br />
 
 <div align='center'>
-
-<img src="https://user-images.githubusercontent.com/76507701/154678151-bbbce31d-6065-4e98-893b-a5e427e82024.png">
-
+  <img src="https://user-images.githubusercontent.com/76507701/154678151-bbbce31d-6065-4e98-893b-a5e427e82024.png">
 </div>
 
+### 🎥 Preview
+---
 
-
+![README](https://user-images.githubusercontent.com/54543013/160714676-d07e3893-88de-4484-b48e-b5752b1b8ab0.gif)
 
 ## :book: 프로젝트 소개
 
@@ -20,16 +20,21 @@
 ## :bulb: 프로젝트 기획 의도
 
 - 불특정 다수에게 필요한 서비스도 좋지만, 그러한 서비스를 개발하는 개발자들을 위해 도움이 되는 서비스를 만들고 싶었습니다. 개발자로 일하기 위해서는 꾸준히 공부를 해야 하는데, 공부한 내용을 기록으로 남길 때 1일 1커밋을 주로 이용합니다. 목표를 설정하고 목표를 달성했을 때 성취감을 주기 위해 이와 같은 프로젝트를 기획하게 되었습니다.
-
 <br />
+
+## :bulb: 기존 서비스와의 차별 점
+1. 기존 GitHub 페이지에서 제공하는 잔디 그래프 형태 대신에, 캘린더와 차트 형태로 데이터를 시각화하여 제공하기 때문에 유저가 좀 더 쉽게 데이터를 확인할 수 있습니다.
+2. 커밋 수에 따라 채워지는 농장 꾸미기, 랭킹 시스템, 배지 획득 등으로 유저의 흥미를 자극하고, 게임하는 듯한 재미와 성취감을 느낄 수 있게 하였습니다.
+3. 랭킹 시스템을 도입하여 유저들간의 선의의 경쟁을 유도할 수 있게 하였습니다.
 
 ## :nut_and_bolt: 서비스 주요 기능
 
 ### 메인 기능
-| 농장꾸미기 | 월간 그래프 | 캘린더 |
-| ------ | ------ | ------ |
-| <div align='center'><img src="https://user-images.githubusercontent.com/76507701/155487805-60cffda1-08b3-4546-aa00-423785d505e5.png"  width="200px" height="400px"/></div> | <div align='center'><img src="https://user-images.githubusercontent.com/76507701/155487936-c496276e-ab1f-4953-ad7c-7d3917bd18aa.png"  width="200px" height="400px"/></div> | <div align='center'><img src="https://user-images.githubusercontent.com/76507701/155488110-49239060-aa52-4a2a-ba62-bbd6e42509b1.png"  width="200px" height="400px"/></div> |
+| 농장꾸미기 | 월간 그래프 | 커밋 캘린더 |
+| :---: | :---: | :---: |
+| <img src="https://user-images.githubusercontent.com/76507701/155487805-60cffda1-08b3-4546-aa00-423785d505e5.png"  width="200px" height="400px"/> | <img src="https://user-images.githubusercontent.com/76507701/155487936-c496276e-ab1f-4953-ad7c-7d3917bd18aa.png"  width="200px" height="400px"/> | <img src="https://user-images.githubusercontent.com/76507701/155488110-49239060-aa52-4a2a-ba62-bbd6e42509b1.png"  width="200px" height="400px"/> |
 | 유저가 목표로 한 일일 커밋양에 비례하여 농장이 점차 채워집니다. (비율 하단 참고) | 월간 그래프를 통해 나의 커밋 통계를 확인합니다. 나의 언의 사용 현황도 확인이 가능합니다. | 월별 캘린더를 통해 커밋 여부와 갯수를 한눈에 확인합니다. 
+
 <details><summary>농장 비율에 따른 이미지 보기</summary>
 - 오늘의 농장 완성 비율: 0%, 20%, 40%, 60%, 80%, 100%
   <div align='center'><img src="https://user-images.githubusercontent.com/76507701/154740168-05e06041-e549-48dc-aae5-9a9c439e8d6f.png"/></div>
